@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+.mainBody{
+    background-color: rgb(181, 239, 247);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+}
+.heads{
+    margin: 0 auto 20px auto;
+    background-color: rgb(115, 157, 211);
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+.heads h1{
+    text-align: center;
+}
+.mainBody{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.inputplane, .keyplane, .outputplane{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    
+}
+input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+input[type="button"]{
+    padding: 10px 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(153, 193, 247);
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+
+}
+input[type="button"]:hover{
+    background-color: #0056b3;
+    color: white;
+}
+
+table tr, td, th{
+    border:solid black;
+    border-collapse:collapse;
+}
+
+

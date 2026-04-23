@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="heads">
+        <header>
+                <h1>
+                    Encryption
+                </h1>
+        </header>
+    </div>
+    <div class="mainBody">
+        <div class="inputplane">
+            <h1>Input text</h1>
+            <input type="text" id="input">
+        </div>
+        <div class="keyplane">
+            <h1>key text</h1>
+            <input type="number" id="key">
+        </div>
+        <div class="outputplane">
+            <h1>output text</h1>
+            <input type="text" id="output">
+        </div>
+        <div class="buttons">
+            <input type="button" value="enter" id="enter">
+            <input type="button" value="clear" id="clear">
+            <a href="secondPage.html"><input type="button" value="Decryption" ></a>
+        </div>
+    </div>
+    <script>
+        let letters = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"]
+        
+
+        let enterbtn = document.getElementById("enter")
+
+        enterbtn.addEventListener("click", function () {
+            let message = document.getElementById("input").value
+            let key = document.getElementById("key").value
+            document.getElementById("output").value = encrypt(message,key)
+            let encrypted = encrypt(message, key);
+
+    document.getElementById("output").value = encrypted;
+
+    fetch("http://localhost:3000/save", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            message: message,
+            encrypted: encrypted, // ✅ NOW DEFINED
+            key: key
+        })
+    })
+    .then(res => res.text())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+       
+        });
+
+        function encrypt(message,key){
+            let encryptedMessage = ""
+            
+            for(i = 0; i < message.length; i++){
+                let character = message.charAt(i)
+                if(key < 0) key*=-1
+                encryptedMessage += ((letters.indexOf(character)* key) + "/")
+            }
+            return encryptedMessage
+        }
+
+       
+         
+        
+    </script>
+</body>
+    
+</html>

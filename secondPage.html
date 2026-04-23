@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="heads">
+        <header>
+                <h1>
+                    decryption
+                </h1>
+        </header>
+    </div>
+    <div class="mainBody">
+        <div class="inputplane">
+            <h1>Input text</h1>
+            <input type="text" id="input2">
+        </div>
+        <div class="keyplane">
+            <h1>key text</h1>
+            <input type="number" id="key2">
+        </div>
+        <div class="outputplane">
+            <h1>output text</h1>
+            <input type="text" id="output2">
+        </div>
+        <div class="buttons">
+            <input type="button" value="enter" id="enter2">
+            <input type="button" value="clear" id="clear2">
+            <a href="main.html"> <input type="button" value="encrypytion" ></a>
+        </div>
+    </div>
+
+    <script>
+        let letters = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"]
+        
+        let enterbtn = document.getElementById("enter2")
+        enterbtn.addEventListener("click", function () {
+            let message = document.getElementById("input2").value
+            let key = document.getElementById("key2").value
+            document.getElementById("output2").value = decrypt(message,key);
+        });
+
+         function decrypt(encryptedMessage,key){
+            let decryptedMessage = ""
+            let encryptedArray = encryptedMessage.split("/")
+            if(key < 0)key *= -1
+            let a = []
+            for(i = 0; i < encryptedArray.length-1; i++){
+                let num = (encryptedArray[i]*1);
+                if(letters[Math.round(num/key)] === undefined){
+                    if(Math.round(num/key) > letters.length){
+                        decryptedMessage += letters[Math.round(num/key)%letters.length]
+                    }else if(Math.round(num/key) < letters.length){
+                        let input = Math.round(key/num)
+                        let length = letters.length
+
+                        let index = Math.round(input - Math.floor(length * (input/length)))
+                        decryptedMessage += letters[index]
+                    } 
+                }else {
+                    decryptedMessage += letters[Math.round(num/key)]
+                }
+                
+            }
+
+            return decryptedMessage;
+        }
+    </script>
+</body>
+</html>
